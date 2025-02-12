@@ -1,7 +1,7 @@
 import { AppRoute } from './consts';
 import { Page } from './types';
 
-const getPageName = (path: string) => {
+const getPageName = (path: string): Page => {
   const processedPath = path.replace(/\/quest\/[^/]+/, '/quest/:id');
 
   for (const key in AppRoute) {

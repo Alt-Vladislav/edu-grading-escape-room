@@ -7,27 +7,48 @@ const AppRoute = {
   Contacts: {
     Path: '/contacts',
     Title: 'Escape Room: Контакты',
-    TitleLink: 'к контактам',
+    TitleLink: 'К контактам',
   },
   Login: {
     Path: '/login',
     Title: 'Escape Room: Авторизация',
-    TitleLink: 'к авторизации',
+    TitleLink: 'К авторизации',
   },
   Quest: {
     Path: '/quest/:id',
     Title: 'Escape Room: @',
-    TitleLink: 'к квесту: "@"',
-  },
-  MyQuests: {
-    Path: '/my-quests',
-    Title: 'Escape Room: Мои бронирования',
-    TitleLink: 'к моим бронированиям',
+    TitleLink: 'К квесту: "@"',
   },
   Booking: {
     Path: '/quest/:id/booking',
     Title: 'Escape Room: Бронирование',
-    TitleLink: 'к бронированию',
+    TitleLink: 'К бронированию',
+  },
+  MyQuests: {
+    Path: '/my-quests',
+    Title: 'Escape Room: Мои бронирования',
+    TitleLink: 'К моим бронированиям',
+  }
+} as const;
+
+const NavigationSetting = {
+  Main: {
+    Name: 'Main',
+    Title: 'Квесты',
+    Link: AppRoute.Main,
+    IsCheckAuthorization: false
+  },
+  Contacts: {
+    Name: 'Contacts',
+    Title: 'Контакты',
+    Link: AppRoute.Contacts,
+    IsCheckAuthorization: false
+  },
+  MyQuests: {
+    Name: 'MyQuests',
+    Title: 'Мои бронирования',
+    Link: AppRoute.MyQuests,
+    IsCheckAuthorization: true
   }
 } as const;
 
@@ -37,4 +58,4 @@ const AuthorizationStatus = {
   Unknown: 'UNKNOWN'
 } as const;
 
-export { AppRoute, AuthorizationStatus };
+export { AppRoute, NavigationSetting, AuthorizationStatus };

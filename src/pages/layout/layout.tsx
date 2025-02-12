@@ -11,10 +11,10 @@ export default function Layout(): JSX.Element {
 
   return (
     <div className="wrapper">
-      <Header />
+      <Header currentPage={ currentPageName } />
 
       <main className="page-content decorated-page">
-        <Background />
+        {currentPageName === 'Main' || <Background />}
         <Outlet />
       </main>
 
