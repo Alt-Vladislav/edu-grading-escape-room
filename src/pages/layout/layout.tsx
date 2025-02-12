@@ -1,10 +1,11 @@
 import { AppRoute } from '../../consts';
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
+import { getPageName } from '../../utils';
+import classNames from 'classnames';
 import Header from '../../components/header/header';
 import Background from '../../components/background/background';
 import Footer from '../../components/footer/footer';
-import { getPageName } from '../../utils';
 
 
 export default function Layout(): JSX.Element {
@@ -18,12 +19,18 @@ export default function Layout(): JSX.Element {
       </Helmet>
 
       <Header currentPage={ currentPageName } />
+      <main className={classNames({
+        'page-content': currentPageName !== 'Quest' && currentPageName !== 'Login',
+        'decorated-page': currentPageName !== 'Main',
+        'quest-page': currentPageName === 'Quest',
+        'login': currentPageName === 'Login',
+      })}
+      >
 
-      <main className="page-content decorated-page">
-        {currentPageName === 'Main' || <Background />}
+        {currentPageName === 'Main' || <Background currentPage={ currentPageName } />}
         <Outlet />
-      </main>
 
+      </main>
       <Footer />
     </div>
   );
