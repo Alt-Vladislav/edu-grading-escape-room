@@ -1,6 +1,10 @@
 import { AppRoute } from '../../consts';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { checkAuthorization } from '../../store/user-slice/user-thunks';
+import { fetchQuests } from '../../store/quests-slice/quests-thunks';
+import { useEffect } from 'react';
 import Layout from '../../pages/layout/layout';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -12,6 +16,12 @@ import ErrorPage from '../../pages/error-page/error-page';
 
 
 export default function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchQuests());
+    dispatch(checkAuthorization());
+  }, [dispatch]);
+
   return (
     <HelmetProvider>
       <BrowserRouter>

@@ -1,26 +1,31 @@
 import { AppRoute } from '../../consts';
 import { Page } from '../../types';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { selectAuthorizationStatus } from '../../store/user-slice/user-selectors';
+import { logout } from '../../store/user-slice/user-thunks';
 import Logo from './logo/logo';
 import NavigationList from './navigation-list/navigation-list';
-
 
 type HeaderProps = {
   currentPage: Page;
 }
 
+
 export default function Header({currentPage}: HeaderProps): JSX.Element {
-  const isAuthorized = true; //TODO
+  const isAuthorized = useAppSelector(selectAuthorizationStatus) === 'AUTH';
+  const dispatch = useAppDispatch();
   const isLoginHidden = currentPage === 'Login';
   const handleSignOutClick = (evt: React.MouseEvent) => {
     evt.preventDefault();
-    // dispatch(logout()); TODO
+    dispatch(logout());
   };
 
   return(
     <header className="header">
       <div className="container container--size-l">
-        <Logo isInactiveLink={ currentPage === 'Main' } />
+        <Logo isInactiveLink={ currentPage === 'Main' }/>
         <NavigationList isAuthorized={ isAuthorized } currentPage={ currentPage }/>
 
         <div className="header__side-nav">
