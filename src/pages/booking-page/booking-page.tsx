@@ -1,3 +1,5 @@
+import ButtonAccent from '../../components/button-accent/button-accent';
+
 export default function BookingPage(): JSX.Element {
   return (
     <div className="container container--size-s">
@@ -199,12 +201,9 @@ export default function BookingPage(): JSX.Element {
             </span>
           </label>
         </fieldset>
-        <button
-          className="btn btn--accent btn--cta booking-form__submit"
-          type="submit"
-        >
-          Забронировать
-        </button>
+
+        <ButtonAccent buttonType='Booking'/>
+
         <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--agreement">
           <input
             type="checkbox"

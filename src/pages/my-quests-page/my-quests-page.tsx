@@ -1,3 +1,5 @@
+import ButtonAccent from '../../components/button-accent/button-accent';
+
 export default function MyQuestsPage(): JSX.Element {
   return (
     <div className="container">
@@ -48,12 +50,7 @@ export default function MyQuestsPage(): JSX.Element {
                 Средний
               </li>
             </ul>
-            <button
-              className="btn btn--accent btn--secondary quest-card__btn"
-              type="button"
-            >
-              Отменить
-            </button>
+            <ButtonAccent buttonType='MyQuests'/>
           </div>
         </div>
         <div className="quest-card">
@@ -97,12 +94,7 @@ export default function MyQuestsPage(): JSX.Element {
                 Лёгкий
               </li>
             </ul>
-            <button
-              className="btn btn--accent btn--secondary quest-card__btn"
-              type="button"
-            >
-              Отменить
-            </button>
+            <ButtonAccent buttonType='MyQuests'/>
           </div>
         </div>
         <div className="quest-card">
@@ -146,12 +138,7 @@ export default function MyQuestsPage(): JSX.Element {
                 Средний
               </li>
             </ul>
-            <button
-              className="btn btn--accent btn--secondary quest-card__btn"
-              type="button"
-            >
-              Отменить
-            </button>
+            <ButtonAccent buttonType='MyQuests'/>
           </div>
         </div>
       </div>
