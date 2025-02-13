@@ -12,23 +12,25 @@ type NavigationItemProps = {
 }
 
 
-export default function NavigationItem({setting, isEnable, isActive, isDisabledLink, onClick}: NavigationItemProps): JSX.Element | false {
+export default function NavigationItem({ setting, isEnable, isActive, isDisabledLink, onClick }: NavigationItemProps): JSX.Element | null {
+  if (!isEnable) {
+    return null;
+  }
+
   const handleNavigationClick = () => {
     onClick(setting.Name);
   };
 
   return (
-    isEnable && (
-      <li className="main-nav__item">
-        <Link
-          to={ setting.Link.Path }
-          title={ setting.Link.TitleLink }
-          className={classNames('link', {'active': isActive, 'not-disabled': isDisabledLink})}
-          onClick={ handleNavigationClick }
-        >
-          {setting.Title}
-        </Link>
-      </li>
-    )
+    <li className="main-nav__item">
+      <Link
+        to={setting.Link.Path}
+        title={setting.Link.TitleLink}
+        className={classNames('link', { 'active': isActive, 'not-disabled': isDisabledLink })}
+        onClick={handleNavigationClick}
+      >
+        {setting.Title}
+      </Link>
+    </li>
   );
 }

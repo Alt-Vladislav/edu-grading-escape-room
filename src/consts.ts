@@ -1,3 +1,7 @@
+const GENRES = ['all', 'adventures', 'horror', 'mystic', 'detective', 'sci-fi'] as const;
+
+const DIFFICULTY_LEVELS = ['all', 'easy', 'medium', 'hard'] as const;
+
 const AppRoute = {
   Main: {
     Path: '/',
@@ -58,4 +62,4 @@ const AuthorizationStatus = {
   Unknown: 'UNKNOWN'
 } as const;
 
-export { AppRoute, NavigationSetting, AuthorizationStatus };
+export { GENRES, DIFFICULTY_LEVELS, AppRoute, NavigationSetting, AuthorizationStatus };
