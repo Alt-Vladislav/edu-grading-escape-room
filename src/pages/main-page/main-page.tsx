@@ -9,6 +9,7 @@ export default function MainPage(): JSX.Element {
           Выберите тематику
         </h2>
       </div>
+
       <div className="page-content__item">
         <form className="filter" action="#" method="get">
           <fieldset className="filter__section">
@@ -100,6 +101,7 @@ export default function MainPage(): JSX.Element {
               </li>
             </ul>
           </fieldset>
+
           <fieldset className="filter__section">
             <legend className="visually-hidden">Сложность</legend>
             <ul className="filter__list">
@@ -131,6 +133,7 @@ export default function MainPage(): JSX.Element {
           </fieldset>
         </form>
       </div>
+
       <h2 className="title visually-hidden">Выберите квест</h2>
       <div className="cards-grid">
         <div className="quest-card">

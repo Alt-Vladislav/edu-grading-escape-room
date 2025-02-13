@@ -19,8 +19,8 @@ type Quest = {
   title: string;
   previewImg: string;
   previewImgWebp: string;
-  level: DifficultyLevel;
-  type: Genre;
+  level: Omit<DifficultyLevel, 'all'>;
+  type: Omit<Genre, 'all'>;
   peopleMinMax: [number, number];
 }
 

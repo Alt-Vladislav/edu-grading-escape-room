@@ -1,6 +1,6 @@
-const GENRES = ['adventures', 'horror', 'mystic', 'detective', 'sci-fi'] as const;
+const GENRES = ['all', 'adventures', 'horror', 'mystic', 'detective', 'sci-fi'] as const;
 
-const DIFFICULTY_LEVELS = ['easy', 'medium', 'hard'] as const;
+const DIFFICULTY_LEVELS = ['all', 'easy', 'medium', 'hard'] as const;
 
 const AppRoute = {
   Main: {
