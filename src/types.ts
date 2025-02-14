@@ -1,8 +1,8 @@
-import { GENRES, DIFFICULTY_LEVELS, AppRoute, NavigationSetting, AuthorizationStatus } from './consts';
+import { QuestGenre, DifficultyLevel, AppRoute, NavigationSetting, AuthorizationStatus } from './consts';
 
-type Genre = typeof GENRES[number];
+type Genre = Lowercase<keyof typeof QuestGenre>;
 
-type DifficultyLevel = typeof DIFFICULTY_LEVELS[number];
+type Difficulty = Lowercase<keyof typeof DifficultyLevel>;
 
 type Slot = {
   time: string;
@@ -19,7 +19,7 @@ type Quest = {
   title: string;
   previewImg: string;
   previewImgWebp: string;
-  level: Omit<DifficultyLevel, 'all'>;
+  level: Omit<Difficulty, 'all'>;
   type: Omit<Genre, 'all'>;
   peopleMinMax: [number, number];
 }
@@ -62,4 +62,4 @@ type Navigation = keyof typeof NavigationSetting;
 
 type Authorization = typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
 
-export type { Genre, DifficultyLevel, Quest, FullQuest, BookingOption, Reservation, User, Page, Navigation, Authorization };
+export type { Genre, Difficulty, Quest, FullQuest, BookingOption, Reservation, User, Page, Navigation, Authorization };

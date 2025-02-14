@@ -1,4 +1,4 @@
-import { Genre, DifficultyLevel, Quest, FullQuest, BookingOption, Reservation, User, Authorization } from '../types';
+import { Genre, Difficulty, Quest, FullQuest, BookingOption, Reservation, User, Authorization } from '../types';
 import { LoadingStatus } from './consts';
 import { AxiosInstance } from 'axios';
 import { AppDispatch } from '../hooks/use-app-dispatch';
@@ -18,7 +18,7 @@ type LoadedData<T> = {
 
 type AppState = {
   genreFilter: Genre;
-  difficultyFilter: DifficultyLevel;
+  difficultyFilter: Difficulty;
   authorizationStatus: Authorization;
   user: LoadedData<User | undefined>;
   quests: LoadedData<Quest[]>;

@@ -6,7 +6,7 @@ type LogoProps = {
 }
 
 
-export default function Logo({ isInactiveLink }: LogoProps): JSX.Element {
+export default function Logo({isInactiveLink}: LogoProps): JSX.Element {
   return (
     isInactiveLink
       ? (

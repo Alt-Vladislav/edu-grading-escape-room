@@ -24,7 +24,7 @@ const InputSetting = {
 } as const;
 
 
-export default function LoginInput({ type, reference }: LoginInputProps): JSX.Element {
+export default function LoginInput({type, reference}: LoginInputProps): JSX.Element {
   const setting = InputSetting[type];
 
   return (
