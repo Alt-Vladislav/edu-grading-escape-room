@@ -1,7 +1,7 @@
 import ButtonAccent from '../../components/button-accent/button-accent';
 import QuestList from '../../components/quest-list/quest-list';
 
-
+//TODO QuestList сделать после запроса данных с сервера
 export default function MyQuestsPage(): JSX.Element {
   return (
     <div className="container">
