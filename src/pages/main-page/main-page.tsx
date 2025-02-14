@@ -1,11 +1,12 @@
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { selectQuests } from '../../store/quests-slice/quests-selectors';
+import { selectQuests, selectQuestsLoadingStatus } from '../../store/quests-slice/quests-selectors';
 import Filter from '../../components/filter/filter';
 import QuestList from '../../components/quest-list/quest-list';
 
 
 export default function MainPage(): JSX.Element {
   const quests = useAppSelector(selectQuests);
+  const loadingStatus = useAppSelector(selectQuestsLoadingStatus);
 
   return (
     <div className="container">
@@ -22,7 +23,7 @@ export default function MainPage(): JSX.Element {
       </div>
 
       <h2 className="title visually-hidden">Выберите квест</h2>
-      <QuestList quests={ quests.data } loadingStatus={ quests.status }/>
+      <QuestList quests={ quests } loadingStatus={ loadingStatus }/>
     </div>
   );
 }
