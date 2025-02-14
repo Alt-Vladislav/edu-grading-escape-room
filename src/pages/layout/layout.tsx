@@ -27,7 +27,7 @@ export default function Layout(): JSX.Element {
       })}
       >
 
-        {currentPageName === 'Main' || <Background currentPage={currentPageName} />}
+        <Background currentPage={currentPageName} />
         <Outlet />
 
       </main>
