@@ -1,4 +1,4 @@
-import { AppRoute, DifficultyLevel } from './consts';
+import { AppRoute, QuestGenre, DifficultyLevel } from './consts';
 import { Quest, Page } from './types';
 
 
@@ -20,5 +20,11 @@ const findDifficultyTitle = (level: Quest['level']) => {
   return difficultyLevel ? difficultyLevel[1].Title : '';
 };
 
+const findGenreTitle = (genre: Quest['type']) => {
+  const questGenre = Object.entries(QuestGenre).find((item) => item[0].toLowerCase() === genre);
 
-export { getPageName, findDifficultyTitle };
+  return questGenre ? questGenre[1].Title : '';
+};
+
+
+export { getPageName, findDifficultyTitle, findGenreTitle };

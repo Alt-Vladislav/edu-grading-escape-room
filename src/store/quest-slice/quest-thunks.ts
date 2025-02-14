@@ -15,7 +15,7 @@ export const fetchFullQuest = createAsyncThunk<FullQuest, { id: string }, ThunkA
 export const fetchQuestBooking = createAsyncThunk<BookingOption[], { id: string }, ThunkApiConfig>(
   `${SliceName.Quest}/booking/fetch`,
   async ({ id }, { extra: api }) => {
-    const response = await api.get<BookingOption[]>(`${APIRoute.Quest}/${id}/${APIRoute.Booking}`);
+    const response = await api.get<BookingOption[]>(`${APIRoute.Quest}/${id}${APIRoute.Booking}`);
     return response.data;
   }
 );
