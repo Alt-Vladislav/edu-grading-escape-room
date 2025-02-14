@@ -11,9 +11,11 @@ type ThunkApiConfig = {
   extra: AxiosInstance;
 };
 
+type LoadingStatus = typeof LoadingStatus[keyof typeof LoadingStatus];
+
 type LoadedData<T> = {
   data: T;
-  status: typeof LoadingStatus[keyof typeof LoadingStatus];
+  status: LoadingStatus;
 }
 
 type AppState = {
@@ -37,4 +39,4 @@ type LoginData = {
   password: string;
 };
 
-export type { ThunkApiConfig, LoadedData, AppState, BookingData, LoginData };
+export type { ThunkApiConfig, LoadingStatus, LoadedData, AppState, BookingData, LoginData };

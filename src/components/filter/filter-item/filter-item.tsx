@@ -13,7 +13,7 @@ type FilterItemProps = {
 }
 
 
-export default function FilterItem({ isDefaultChecked, itemType, name, listName, idName, title, icon }: FilterItemProps): JSX.Element {
+export default function FilterItem({isDefaultChecked, itemType, name, listName, idName, title, icon}: FilterItemProps): JSX.Element {
   const dispatch = useAppDispatch();
   const handleFilterClick = () => {
     if (itemType === 'Genre') {

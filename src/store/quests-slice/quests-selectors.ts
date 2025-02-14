@@ -6,12 +6,7 @@ const getQuestsState = (state: State) => state[SliceName.Quests].quests;
 
 const selectQuests = createSelector(
   getQuestsState,
-  (quests) => quests.data
+  (quests) => quests
 );
 
-const selectQuestsLoadingStatus = createSelector(
-  getQuestsState,
-  (quests) => quests.status
-);
-
-export { selectQuests, selectQuestsLoadingStatus };
+export { selectQuests };

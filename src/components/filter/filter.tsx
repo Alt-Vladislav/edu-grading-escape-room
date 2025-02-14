@@ -20,7 +20,7 @@ const FilterSetting = {
 };
 
 
-export default function Filter({ filterType }: FilterProps): JSX.Element {
+export default function Filter({filterType}: FilterProps): JSX.Element {
   const setting = FilterSetting[filterType];
 
   return (
