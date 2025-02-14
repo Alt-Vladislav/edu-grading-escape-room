@@ -26,15 +26,15 @@ export default function App() {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={ AppRoute.Main.Path } element={ <Layout/> }>
-            <Route index element={ <MainPage /> }/>
-            <Route path={ AppRoute.Contacts.Path } element={ <ContactsPage/> }/>
-            <Route path={ AppRoute.Quest.Path } element={ <QuestPage/> }/>
-            <Route path={ AppRoute.Login.Path } element={ <LoginPage/> }/>
-            <Route path={ AppRoute.MyQuests.Path } element={ <MyQuestsPage/> }/>
-            <Route path={ AppRoute.Booking.Path } element={ <BookingPage/> }/>
+          <Route path={AppRoute.Main.Path} element={<Layout />}>
+            <Route index element={<MainPage />} />
+            <Route path={AppRoute.Contacts.Path} element={<ContactsPage />} />
+            <Route path={AppRoute.Quest.Path} element={<QuestPage />} />
+            <Route path={AppRoute.Login.Path} element={<LoginPage />} />
+            <Route path={AppRoute.MyQuests.Path} element={<MyQuestsPage />} />
+            <Route path={AppRoute.Booking.Path} element={<BookingPage />} />
           </Route>
-          <Route path='*' element={ <ErrorPage /> }/>
+          <Route path='*' element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

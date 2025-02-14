@@ -9,7 +9,7 @@ type NavigationProps = {
 }
 
 
-export default function NavigationList({isAuthorized, currentPage}: NavigationProps): JSX.Element {
+export default function NavigationList({ isAuthorized, currentPage }: NavigationProps): JSX.Element {
   const [activeNavigation, setActiveNavigation] = useState<Navigation>('Main');
 
   return (
@@ -19,11 +19,11 @@ export default function NavigationList({isAuthorized, currentPage}: NavigationPr
           Object.entries(NavigationSetting).map(([pageName, settings]) => (
             <NavigationItem
               key={pageName}
-              setting={ settings }
-              isEnable={ !settings.IsCheckAuthorization || isAuthorized }
-              isActive = { activeNavigation === pageName }
-              isDisabledLink={ activeNavigation !== currentPage }
-              onClick={ setActiveNavigation }
+              setting={settings}
+              isEnable={!settings.IsCheckAuthorization || isAuthorized}
+              isActive={activeNavigation === pageName}
+              isDisabledLink={activeNavigation !== currentPage}
+              onClick={setActiveNavigation}
             />
           ))
         }

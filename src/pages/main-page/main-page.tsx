@@ -23,7 +23,7 @@ export default function MainPage(): JSX.Element {
       </div>
 
       <h2 className="title visually-hidden">Выберите квест</h2>
-      <QuestList quests={ quests } loadingStatus={ loadingStatus }/>
+      <QuestList quests={quests} loadingStatus={loadingStatus} />
     </div>
   );
 }

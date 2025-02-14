@@ -4,8 +4,8 @@ import { fetchFullQuest, fetchQuestBooking, postQuestBooking } from './quest-thu
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialSLiceState: Pick<AppState, 'quest' | 'bookingOptions' | 'isBooking'> = {
-  quest: {data: null, status: LoadingStatus.Unknown},
-  bookingOptions: {data: [], status: LoadingStatus.Unknown},
+  quest: { data: null, status: LoadingStatus.Unknown },
+  bookingOptions: { data: [], status: LoadingStatus.Unknown },
   isBooking: false
 };
 

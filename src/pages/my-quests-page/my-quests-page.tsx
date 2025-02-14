@@ -9,7 +9,7 @@ export default function MyQuestsPage(): JSX.Element {
         <h1 className="title title--size-m page-content__title">Мои бронирования</h1>
       </div>
 
-      <QuestList listType='MyQuests'/>
+      <QuestList listType='MyQuests' />
       <div className="cards-grid">
 
         <div className="quest-card">
@@ -53,7 +53,7 @@ export default function MyQuestsPage(): JSX.Element {
                 Средний
               </li>
             </ul>
-            <ButtonAccent buttonType='MyQuests'/>
+            <ButtonAccent buttonType='MyQuests' />
           </div>
         </div>
 
@@ -98,7 +98,7 @@ export default function MyQuestsPage(): JSX.Element {
                 Лёгкий
               </li>
             </ul>
-            <ButtonAccent buttonType='MyQuests'/>
+            <ButtonAccent buttonType='MyQuests' />
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function MyQuestsPage(): JSX.Element {
                 Средний
               </li>
             </ul>
-            <ButtonAccent buttonType='MyQuests'/>
+            <ButtonAccent buttonType='MyQuests' />
           </div>
         </div>
 

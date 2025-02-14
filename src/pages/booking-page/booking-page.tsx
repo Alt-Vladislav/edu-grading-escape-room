@@ -202,7 +202,7 @@ export default function BookingPage(): JSX.Element {
           </label>
         </fieldset>
 
-        <ButtonAccent buttonType='Booking'/>
+        <ButtonAccent buttonType='Booking' />
 
         <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--agreement">
           <input

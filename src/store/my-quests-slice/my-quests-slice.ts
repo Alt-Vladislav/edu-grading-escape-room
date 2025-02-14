@@ -6,7 +6,7 @@ import { logout } from '../user-slice/user-thunks';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialSLiceState: Pick<AppState, 'myQuests'> = {
-  myQuests: {data: [], status: LoadingStatus.Unknown},
+  myQuests: { data: [], status: LoadingStatus.Unknown },
 };
 
 

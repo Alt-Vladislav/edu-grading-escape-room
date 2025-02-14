@@ -4,7 +4,7 @@ import { fetchQuests } from './quests-thunks';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialSLiceState: Pick<AppState, 'quests'> = {
-  quests: {data: [], status: LoadingStatus.Unknown},
+  quests: { data: [], status: LoadingStatus.Unknown },
 };
 
 

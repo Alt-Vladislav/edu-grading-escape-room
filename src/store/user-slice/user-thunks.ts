@@ -18,9 +18,9 @@ export const checkAuthorization = createAsyncThunk<User, undefined, ThunkApiConf
 
 export const login = createAsyncThunk<User, LoginData, ThunkApiConfig>(
   `${SliceName.User}/login`,
-  async ({email, password}, { dispatch, extra: api }) => {
+  async ({ email, password }, { dispatch, extra: api }) => {
     dropToken();
-    const response = await api.post<User>(APIRoute.Login, {email, password});
+    const response = await api.post<User>(APIRoute.Login, { email, password });
     saveToken(response.data.token);
     dispatch(fetchMyQuests());
     return response.data;

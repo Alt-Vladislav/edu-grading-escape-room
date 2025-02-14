@@ -13,10 +13,10 @@ export const appSlice = createSlice({
   name: SliceName.App,
   initialState: initialState,
   reducers: {
-    changeGenreFilter(state, action: PayloadAction<{filter: Genre}>) {
+    changeGenreFilter(state, action: PayloadAction<{ filter: Genre }>) {
       state.genreFilter = action.payload.filter;
     },
-    changeDifficultyFilter(state, action: PayloadAction<{filter: Difficulty}>) {
+    changeDifficultyFilter(state, action: PayloadAction<{ filter: Difficulty }>) {
       state.difficultyFilter = action.payload.filter;
     }
   }

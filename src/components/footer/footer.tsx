@@ -1,5 +1,5 @@
 export default function Footer(): JSX.Element {
-  return(
+  return (
     <footer className="footer">
       <div className="container container--size-l">
         <div className="socials">

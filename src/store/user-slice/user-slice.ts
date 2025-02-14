@@ -5,7 +5,7 @@ import { checkAuthorization, login, logout } from './user-thunks';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialSLiceState: Pick<AppState, 'authorizationStatus' | 'user'> = {
-  user: {data: null, status: LoadingStatus.Unknown},
+  user: { data: null, status: LoadingStatus.Unknown },
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 

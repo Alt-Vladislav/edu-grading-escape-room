@@ -1,6 +1,6 @@
 import { Quest, Reservation } from '../../types';
 import { LoadingStatus } from '../../store/types';
-import Spinner from '../../spinner/spinner';
+import Spinner from '../spinner/spinner';
 import QuestItem from './quest-item/quest-item';
 
 type QuestListProps = {

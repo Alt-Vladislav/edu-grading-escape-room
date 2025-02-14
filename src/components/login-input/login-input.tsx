@@ -24,17 +24,17 @@ const InputSetting = {
 } as const;
 
 
-export default function LoginInput({type, reference}: LoginInputProps): JSX.Element {
+export default function LoginInput({ type, reference }: LoginInputProps): JSX.Element {
   const setting = InputSetting[type];
 
   return (
     <div className="custom-input login-form__input">
-      <label className="custom-input__label" htmlFor={ setting.Name }>{setting.LabelText}</label>
+      <label className="custom-input__label" htmlFor={setting.Name}>{setting.LabelText}</label>
       <input
-        type={ setting.Name }
-        id={ setting.Name }
-        name={ setting.Name }
-        placeholder={ setting.Placeholder }
+        type={setting.Name}
+        id={setting.Name}
+        name={setting.Name}
+        placeholder={setting.Placeholder}
         required
         ref={reference}
         {...setting.ExtraSetting}

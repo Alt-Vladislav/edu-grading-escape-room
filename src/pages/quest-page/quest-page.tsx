@@ -13,7 +13,7 @@ export default function QuestPage(): JSX.Element {
           <span className="visually-hidden">Жанр:</span>Ужасы
         </p>
 
-        <Tags type='page' peopleMinMax={[3,6]} level={'medium'}/>
+        <Tags type='page' peopleMinMax={[3, 6]} level={'medium'} />
 
         <p className="quest-page__description">
           В&nbsp;комнате с&nbsp;приглушённым светом несколько человек,

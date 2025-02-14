@@ -20,10 +20,10 @@ const ButtonSetting = {
   }
 } as const;
 
-export default function ButtonAccent({buttonType}: ButtonAccentProps): JSX.Element {
+export default function ButtonAccent({ buttonType }: ButtonAccentProps): JSX.Element {
   const setting = ButtonSetting[buttonType];
   return (
-    <button className={ `btn btn--accent ${setting.Class}` } type={ setting.Type }>
+    <button className={`btn btn--accent ${setting.Class}`} type={setting.Type}>
       {setting.Title}
     </button>
   );

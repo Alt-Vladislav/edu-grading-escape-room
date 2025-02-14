@@ -12,10 +12,10 @@ export const fetchMyQuests = createAsyncThunk<Reservation[], undefined, ThunkApi
   }
 );
 
-export const deleteMyQuest = createAsyncThunk<{id: string}, {id: string}, ThunkApiConfig>(
+export const deleteMyQuest = createAsyncThunk<{ id: string }, { id: string }, ThunkApiConfig>(
   `${SliceName.MyQuests}/delete`,
-  async ({id}, { extra: api }) => {
+  async ({ id }, { extra: api }) => {
     await api.delete(`${APIRoute.Reservation}/${id}`);
-    return {id};
+    return { id };
   }
 );

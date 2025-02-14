@@ -10,7 +10,7 @@ const ImageSize = {
   Big: 1959
 } as const;
 
-export default function Background({currentPage}: BackgroundProps): JSX.Element {
+export default function Background({ currentPage }: BackgroundProps): JSX.Element {
   const isBlurred = currentPage !== 'Quest' && currentPage !== 'Login';
   const imagePath = isBlurred ? DEFAULT_IMAGE_PATH.replace('c-', 'c-bg-') : DEFAULT_IMAGE_PATH;
   //TODO Нужно будет что то думать при получении картинок сервера (страница Quest)

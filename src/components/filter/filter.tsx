@@ -20,7 +20,7 @@ const FilterSetting = {
 };
 
 
-export default function Filter({filterType}: FilterProps): JSX.Element {
+export default function Filter({ filterType }: FilterProps): JSX.Element {
   const setting = FilterSetting[filterType];
 
   return (
@@ -32,13 +32,13 @@ export default function Filter({filterType}: FilterProps): JSX.Element {
 
           return (
             <FilterItem
-              key={ filterName }
-              itemType={ filterType }
-              name={ filterName.toLowerCase() as Genre | Difficulty }
-              listName={ setting.ListName }
-              isDefaultChecked={ index === 0 }
-              idName={ config.Name }
-              title={ config.Title }
+              key={filterName}
+              itemType={filterType}
+              name={filterName.toLowerCase() as Genre | Difficulty}
+              listName={setting.ListName}
+              isDefaultChecked={index === 0}
+              idName={config.Name}
+              title={config.Title}
               icon={'Icon' in config ? config.Icon : undefined}
             />
           );

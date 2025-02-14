@@ -33,8 +33,8 @@ export default function LoginPage(): JSX.Element {
             <h1 className="title title--size-s login-form__title">Вход</h1>
 
             <div className="login-form__inputs">
-              <LoginInput type='Email' reference={ emailRef } />
-              <LoginInput type='Password' reference={ passwordRef } />
+              <LoginInput type='Email' reference={emailRef} />
+              <LoginInput type='Password' reference={passwordRef} />
             </div>
 
             <ButtonAccent buttonType='Login' />
@@ -46,7 +46,7 @@ export default function LoginPage(): JSX.Element {
               id="id-order-agreement"
               name="user-agreement"
               required
-              ref={ checkboxRef }
+              ref={checkboxRef}
             />
             <span className="custom-checkbox__icon">
               <svg width={20} height={17} aria-hidden="true">

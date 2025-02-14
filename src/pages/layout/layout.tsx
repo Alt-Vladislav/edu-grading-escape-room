@@ -15,10 +15,10 @@ export default function Layout(): JSX.Element {
   return (
     <div className="wrapper">
       <Helmet>
-        <title>{ AppRoute[currentPageName].Title }</title>
+        <title>{AppRoute[currentPageName].Title}</title>
       </Helmet>
 
-      <Header currentPage={ currentPageName } />
+      <Header currentPage={currentPageName} />
       <main className={classNames({
         'page-content': currentPageName !== 'Quest' && currentPageName !== 'Login',
         'decorated-page': currentPageName !== 'Main',
@@ -27,7 +27,7 @@ export default function Layout(): JSX.Element {
       })}
       >
 
-        {currentPageName === 'Main' || <Background currentPage={ currentPageName } />}
+        {currentPageName === 'Main' || <Background currentPage={currentPageName} />}
         <Outlet />
 
       </main>

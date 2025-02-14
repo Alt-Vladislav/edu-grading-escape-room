@@ -12,7 +12,7 @@ type NavigationItemProps = {
 }
 
 
-export default function NavigationItem({setting, isEnable, isActive, isDisabledLink, onClick}: NavigationItemProps): JSX.Element | null {
+export default function NavigationItem({ setting, isEnable, isActive, isDisabledLink, onClick }: NavigationItemProps): JSX.Element | null {
   if (!isEnable) {
     return null;
   }
