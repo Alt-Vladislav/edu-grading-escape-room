@@ -1,3 +1,7 @@
+import Tags from '../../components/tags/tags';
+
+
+//TODO В компонент Tags добавьте пропсы:
 export default function QuestPage(): JSX.Element {
   return (
     <div className="container container--size-l">
@@ -8,20 +12,9 @@ export default function QuestPage(): JSX.Element {
         <p className="subtitle quest-page__subtitle">
           <span className="visually-hidden">Жанр:</span>Ужасы
         </p>
-        <ul className="tags tags--size-l quest-page__tags">
-          <li className="tags__item">
-            <svg width={11} height={14} aria-hidden="true">
-              <use xlinkHref="#icon-person" />
-            </svg>
-            3–6&nbsp;чел
-          </li>
-          <li className="tags__item">
-            <svg width={14} height={14} aria-hidden="true">
-              <use xlinkHref="#icon-level" />
-            </svg>
-            Средний
-          </li>
-        </ul>
+
+        <Tags type='page' peopleMinMax={[3,6]} level={'medium'}/>
+
         <p className="quest-page__description">
           В&nbsp;комнате с&nbsp;приглушённым светом несколько человек,
           незнакомых друг с&nbsp;другом, приходят в&nbsp;себя. Никто

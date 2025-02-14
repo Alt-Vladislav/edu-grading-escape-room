@@ -22,9 +22,9 @@ type AppState = {
   genreFilter: Genre;
   difficultyFilter: Difficulty;
   authorizationStatus: Authorization;
-  user: LoadedData<User | undefined>;
+  user: LoadedData<User | null>;
   quests: LoadedData<Quest[]>;
-  quest: LoadedData<FullQuest | undefined>;
+  quest: LoadedData<FullQuest | null>;
   bookingOptions: LoadedData<BookingOption[]>;
   myQuests: LoadedData<Reservation[]>;
   isBooking: boolean;

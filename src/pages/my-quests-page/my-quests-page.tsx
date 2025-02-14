@@ -1,14 +1,17 @@
 import ButtonAccent from '../../components/button-accent/button-accent';
+import QuestList from '../../components/quest-list/quest-list';
+
 
 export default function MyQuestsPage(): JSX.Element {
   return (
     <div className="container">
       <div className="page-content__title-wrapper">
-        <h1 className="title title--size-m page-content__title">
-          Мои бронирования
-        </h1>
+        <h1 className="title title--size-m page-content__title">Мои бронирования</h1>
       </div>
+
+      <QuestList listType='MyQuests'/>
       <div className="cards-grid">
+
         <div className="quest-card">
           <div className="quest-card__img">
             <picture>
@@ -53,6 +56,7 @@ export default function MyQuestsPage(): JSX.Element {
             <ButtonAccent buttonType='MyQuests'/>
           </div>
         </div>
+
         <div className="quest-card">
           <div className="quest-card__img">
             <picture>
@@ -97,6 +101,7 @@ export default function MyQuestsPage(): JSX.Element {
             <ButtonAccent buttonType='MyQuests'/>
           </div>
         </div>
+
         <div className="quest-card">
           <div className="quest-card__img">
             <picture>
@@ -141,6 +146,7 @@ export default function MyQuestsPage(): JSX.Element {
             <ButtonAccent buttonType='MyQuests'/>
           </div>
         </div>
+
       </div>
     </div>
   );

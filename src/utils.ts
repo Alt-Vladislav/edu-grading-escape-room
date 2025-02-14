@@ -1,5 +1,6 @@
-import { AppRoute } from './consts';
-import { Page } from './types';
+import { AppRoute, DifficultyLevel } from './consts';
+import { Quest, Page } from './types';
+
 
 const getPageName = (path: string): Page => {
   const processedPath = path.replace(/\/quest\/[^/]+/, '/quest/:id');
@@ -12,4 +13,12 @@ const getPageName = (path: string): Page => {
   return 'Main';
 };
 
-export { getPageName };
+
+const findDifficultyTitle = (level: Quest['level']) => {
+  const difficultyLevel = Object.entries(DifficultyLevel).find((item) => item[0].toLowerCase() === level);
+
+  return difficultyLevel ? difficultyLevel[1].Title : '';
+};
+
+
+export { getPageName, findDifficultyTitle };
