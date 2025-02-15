@@ -62,4 +62,4 @@ type Navigation = keyof typeof NavigationSetting;
 
 type Authorization = typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
 
-export type { Genre, Difficulty, Quest, FullQuest, BookingOption, Reservation, User, Page, Navigation, Authorization };
+export type { Genre, Difficulty, Location, Quest, FullQuest, BookingOption, Reservation, User, Page, Navigation, Authorization };

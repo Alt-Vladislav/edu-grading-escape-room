@@ -1,3 +1,4 @@
+import Map from '../../components/map/map';
 import ButtonAccent from '../../components/button-accent/button-accent';
 
 export default function BookingPage(): JSX.Element {
@@ -11,17 +12,22 @@ export default function BookingPage(): JSX.Element {
           Маньяк
         </p>
       </div>
+
       <div className="page-content__item">
+
+        {/* <Map /> */}
+        {/* TODO: Заменить нижний DIV на компонент Map */}
         <div className="booking-map">
           <div className="map">
             <div className="map__container" />
           </div>
           <p className="booking-map__address">
-            Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м.
-            Петроградская
+            Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская
           </p>
         </div>
+
       </div>
+
       <form
         className="booking-form"
         action="https://echo.htmlacademy.ru/"

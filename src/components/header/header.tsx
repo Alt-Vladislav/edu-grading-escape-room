@@ -35,7 +35,7 @@ export default function Header({ currentPage }: HeaderProps): JSX.Element {
               : <Link to={AppRoute.Login.Path} title={AppRoute.Login.TitleLink} className="btn header__side-item header__login-btn">Вход</Link>
           )}
 
-          <a className="link header__side-item header__phone-link" href="tel:800031111111">8 (000) 111-11-11</a>
+          <a className="link header__side-item header__phone-link" href="tel:80001111111">8 (000) 111-11-11</a>
         </div>
       </div>
     </header>
