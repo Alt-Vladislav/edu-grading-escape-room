@@ -1,23 +1,23 @@
-import { Reservation } from '../../types';
-import { ContactCoordinates, Zoom, defaultCustomIcon, selectedCustomIcon } from './const';
-import { useState, useRef, useEffect } from 'react';
+import { BookingOption } from '../../types';
+import { CenterSetting, defaultCustomIcon, selectedCustomIcon } from './const';
+import { useRef, useEffect } from 'react';
 import useMap from '../../hooks/use-map';
 import Leaflet from 'leaflet';
 import classNames from 'classnames';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  reservations?: Reservation[];
+  selectedMarker?: string;
+  bookingOptions?: BookingOption[];
+  onCLick?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 
-export default function Map({ reservations }: MapProps): JSX.Element {
-  const center = reservations ? reservations[0].location.coords : ContactCoordinates.coords;
-  const zoom = reservations ? Zoom.Reservation : Zoom.Contact;
-  const [selectedMarker, setSelectedMarker] = useState<string>('');
+export default function Map({ selectedMarker, bookingOptions, onCLick }: MapProps): JSX.Element {
+  const center = (bookingOptions && bookingOptions.length > 0) ? CenterSetting.Booking : CenterSetting.Contact;
   const containerRef = useRef(null);
-  const map = useMap(containerRef, center, zoom);
-
+  const map = useMap(containerRef, center.Coords as [number, number], center.Zoom);
+  const selectedBookingOption = bookingOptions?.find((option) => option.id === selectedMarker);
 
   useEffect(() => {
     if (!map) {
@@ -25,46 +25,50 @@ export default function Map({ reservations }: MapProps): JSX.Element {
     }
     const markerLayer = Leaflet.layerGroup().addTo(map);
 
-    if (!reservations) {
+    if (!bookingOptions) {
       Leaflet
         .marker({
-          lat: ContactCoordinates.coords[0],
-          lng: ContactCoordinates.coords[1],
+          lat: CenterSetting.Contact.Coords[0],
+          lng: CenterSetting.Contact.Coords[1],
         })
         .setIcon(selectedCustomIcon)
         .addTo(markerLayer);
     } else {
-      reservations.forEach((reservation) => {
+      bookingOptions.forEach((option) => {
         const marker = Leaflet
           .marker({
-            lat: reservation.location.coords[0],
-            lng: reservation.location.coords[1],
+            lat: option.location.coords[0],
+            lng: option.location.coords[1],
           })
           .setIcon(
-            reservation.id === selectedMarker
+            option.id === selectedMarker
               ? selectedCustomIcon
               : defaultCustomIcon
           );
 
         marker
           .addTo(markerLayer)
-          .on('click', () => setSelectedMarker(reservation.id));
+          .on('click', () => {
+            if (onCLick) {
+              onCLick(option.id);
+            }
+          });
       });
     }
 
     return () => {
       map.removeLayer(markerLayer);
     };
-  }, [map, reservations, selectedMarker]);
+  }, [map, bookingOptions, selectedMarker, onCLick]);
 
 
   return (
-    <div className={classNames({ 'contacts__map': !reservations, 'booking-map': !!reservations })}>
+    <div className={classNames({ 'contacts__map': !bookingOptions, 'booking-map': !!bookingOptions })}>
       <div className="map">
         <div className="map__container" style={{ height: '100%' }} ref={containerRef}></div>
       </div>
 
-      {/* TODO <p className="booking-map__address">Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская</p> */}
+      {selectedBookingOption && <p className="booking-map__address">Вы&nbsp;выбрали: {selectedBookingOption.location.address}</p>}
     </div>
   );
 }

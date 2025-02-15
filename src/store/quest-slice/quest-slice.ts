@@ -17,7 +17,6 @@ export const questSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchFullQuest.pending, (state) => {
-        state.quest.data = initialSLiceState.quest.data;
         state.quest.status = LoadingStatus.Loading;
       })
       .addCase(fetchFullQuest.fulfilled, (state, action) => {
