@@ -9,4 +9,9 @@ const selectAuthorizationStatus = createSelector(
   (user) => user.authorizationStatus
 );
 
-export { selectAuthorizationStatus };
+const selectUserLoadingStatus = createSelector(
+  getUserState,
+  (user) => user.user.status
+);
+
+export { selectAuthorizationStatus, selectUserLoadingStatus };

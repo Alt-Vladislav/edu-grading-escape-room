@@ -1,6 +1,7 @@
 type LoginInputProps = {
   type: keyof typeof InputSetting;
   reference: React.RefObject<HTMLInputElement>;
+  isDisabled: boolean;
 }
 
 const PASSWORD_PATTERN = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{3,15}$/;
@@ -24,7 +25,7 @@ const InputSetting = {
 } as const;
 
 
-export default function LoginInput({ type, reference }: LoginInputProps): JSX.Element {
+export default function LoginInput({ type, reference, isDisabled }: LoginInputProps): JSX.Element {
   const setting = InputSetting[type];
 
   return (
@@ -37,6 +38,7 @@ export default function LoginInput({ type, reference }: LoginInputProps): JSX.El
         placeholder={setting.Placeholder}
         required
         ref={reference}
+        disabled={isDisabled}
         {...setting.ExtraSetting}
       />
     </div>

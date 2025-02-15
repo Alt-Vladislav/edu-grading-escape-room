@@ -1,4 +1,6 @@
 import { useRef } from 'react';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { selectUserLoadingStatus } from '../../store/user-slice/user-selectors';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { login } from '../../store/user-slice/user-thunks';
 import LoginInput from '../../components/login-input/login-input';
@@ -6,6 +8,7 @@ import ButtonAccent from '../../components/button-accent/button-accent';
 
 
 export default function LoginPage(): JSX.Element {
+  const isLoading = useAppSelector(selectUserLoadingStatus) === 'Loading';
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const checkboxRef = useRef<HTMLInputElement>(null);
@@ -31,13 +34,11 @@ export default function LoginPage(): JSX.Element {
 
           <div className="login-form__inner-wrapper">
             <h1 className="title title--size-s login-form__title">Вход</h1>
-
             <div className="login-form__inputs">
-              <LoginInput type='Email' reference={emailRef} />
-              <LoginInput type='Password' reference={passwordRef} />
+              <LoginInput type='Email' reference={emailRef} isDisabled={ isLoading } />
+              <LoginInput type='Password' reference={passwordRef} isDisabled={ isLoading } />
             </div>
-
-            <ButtonAccent buttonType='Login' />
+            <ButtonAccent buttonType='Login' isDisabled={ isLoading } />
           </div>
 
           <label className="custom-checkbox login-form__checkbox">
@@ -47,6 +48,7 @@ export default function LoginPage(): JSX.Element {
               name="user-agreement"
               required
               ref={checkboxRef}
+              disabled={ isLoading }
             />
             <span className="custom-checkbox__icon">
               <svg width={20} height={17} aria-hidden="true">

@@ -1,5 +1,6 @@
 type ButtonAccentProps = {
   buttonType: keyof typeof ButtonSetting;
+  isDisabled?: boolean;
 }
 
 const ButtonSetting = {
@@ -20,10 +21,10 @@ const ButtonSetting = {
   }
 } as const;
 
-export default function ButtonAccent({ buttonType }: ButtonAccentProps): JSX.Element {
+export default function ButtonAccent({ buttonType, isDisabled = false }: ButtonAccentProps): JSX.Element {
   const setting = ButtonSetting[buttonType];
   return (
-    <button className={`btn btn--accent ${setting.Class}`} type={setting.Type}>
+    <button className={`btn btn--accent ${setting.Class}`} type={setting.Type} disabled={isDisabled}>
       {setting.Title}
     </button>
   );

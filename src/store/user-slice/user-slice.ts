@@ -26,6 +26,10 @@ export const userSlice = createSlice({
         state.user.status = LoadingStatus.Error;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
+      .addCase(login.pending, (state) => {
+        state.user.status = LoadingStatus.Loading;
+        state.authorizationStatus = AuthorizationStatus.Unknown;
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user.data = action.payload;
         state.user.status = LoadingStatus.Loaded;
