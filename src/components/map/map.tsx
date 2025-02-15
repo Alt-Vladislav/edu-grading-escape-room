@@ -7,17 +7,16 @@ import classNames from 'classnames';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  selectedMarker?: string;
+  selectedBookingOption?: BookingOption;
   bookingOptions?: BookingOption[];
   onCLick?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 
-export default function Map({ selectedMarker, bookingOptions, onCLick }: MapProps): JSX.Element {
+export default function Map({ selectedBookingOption, bookingOptions, onCLick }: MapProps): JSX.Element {
   const center = (bookingOptions && bookingOptions.length > 0) ? CenterSetting.Booking : CenterSetting.Contact;
   const containerRef = useRef(null);
   const map = useMap(containerRef, center.Coords as [number, number], center.Zoom);
-  const selectedBookingOption = bookingOptions?.find((option) => option.id === selectedMarker);
 
   useEffect(() => {
     if (!map) {
@@ -41,7 +40,7 @@ export default function Map({ selectedMarker, bookingOptions, onCLick }: MapProp
             lng: option.location.coords[1],
           })
           .setIcon(
-            option.id === selectedMarker
+            option.id === selectedBookingOption?.id
               ? selectedCustomIcon
               : defaultCustomIcon
           );
@@ -59,7 +58,7 @@ export default function Map({ selectedMarker, bookingOptions, onCLick }: MapProp
     return () => {
       map.removeLayer(markerLayer);
     };
-  }, [map, bookingOptions, selectedMarker, onCLick]);
+  }, [map, bookingOptions, selectedBookingOption, onCLick]);
 
 
   return (
