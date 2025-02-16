@@ -1,7 +1,17 @@
+import { AppRoute } from '../../consts';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { setRedirectPath } from '../../store/app-slice/app-slice';
+import { useEffect } from 'react';
 import Contact from '../../components/contact/contact';
 import Map from '../../components/map/map';
 
 export default function ContactsPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setRedirectPath({ redirectPath: AppRoute.Contacts.Path }));
+  }, [dispatch]);
+
   return (
     <div className="container">
       <div className="page-content__title-wrapper page-content__title-wrapper--underlined">

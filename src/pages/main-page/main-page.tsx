@@ -1,5 +1,9 @@
+import { AppRoute } from '../../consts';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { selectQuests, selectQuestsLoadingStatus } from '../../store/quests-slice/quests-selectors';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { setRedirectPath } from '../../store/app-slice/app-slice';
+import { useEffect } from 'react';
 import Filter from '../../components/filter/filter';
 import QuestList from '../../components/quest-list/quest-list';
 
@@ -7,6 +11,11 @@ import QuestList from '../../components/quest-list/quest-list';
 export default function MainPage(): JSX.Element {
   const quests = useAppSelector(selectQuests);
   const loadingStatus = useAppSelector(selectQuestsLoadingStatus);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setRedirectPath({ redirectPath: AppRoute.Main.Path }));
+  }, [dispatch]);
 
   return (
     <div className="container">
