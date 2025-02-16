@@ -1,5 +1,9 @@
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { deleteMyQuest } from '../../store/my-quests-slice/my-quests-thunks';
+
 type ButtonAccentProps = {
   buttonType: keyof typeof ButtonSetting;
+  reservationId?: string | null;
   isDisabled?: boolean;
 }
 
@@ -21,10 +25,20 @@ const ButtonSetting = {
   }
 } as const;
 
-export default function ButtonAccent({ buttonType, isDisabled = false }: ButtonAccentProps): JSX.Element {
+export default function ButtonAccent({ buttonType, reservationId = null, isDisabled = false }: ButtonAccentProps): JSX.Element {
   const setting = ButtonSetting[buttonType];
+  const dispatch = useAppDispatch();
+  const handleButtonClick = reservationId && {
+    onClick: () => dispatch(deleteMyQuest({id: reservationId}))
+  };
+
   return (
-    <button className={`btn btn--accent ${setting.Class}`} type={setting.Type} disabled={isDisabled}>
+    <button
+      className={`btn btn--accent ${setting.Class}`}
+      type={setting.Type}
+      disabled={isDisabled}
+      {...handleButtonClick}
+    >
       {setting.Title}
     </button>
   );

@@ -4,6 +4,8 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Picture from '../../picture/picture';
 import Tags from '../../tags/tags';
+import BookingInfo from '../booking-info/booking-info';
+import ButtonAccent from '../../button-accent/button-accent';
 
 type QuestItemProps = {
   quest: Quest;
@@ -18,8 +20,14 @@ const ImageSize = {
 
 export default function QuestItem({ quest, reservation }: QuestItemProps): JSX.Element {
   const { id, title, previewImg, previewImgWebp, level, peopleMinMax } = quest;
+  let bookingId = null;
+  let bookingInfo = '';
+  let bookingPeopleCount = null;
   if (reservation) {
-    const { date, time, contactPerson, phone, withChildren, peopleCount } = reservation;    //TODO: Доделать для страницы "Мои бронирования"
+    const { id: reservationId, date, time, location, peopleCount } = reservation;
+    bookingId = reservationId;
+    bookingInfo = `[${date === 'today' ? 'сегодня' : 'завтра'}, ${time}, ${location.address}]`;
+    bookingPeopleCount = peopleCount;
   }
 
   const currentLink = useMemo(() => ({
@@ -44,9 +52,12 @@ export default function QuestItem({ quest, reservation }: QuestItemProps): JSX.E
           <Link to={currentLink.path} title={currentLink.title.replace('@', title)} className="quest-card__link">
             {title}
           </Link>
+
+          {reservation && <BookingInfo text={bookingInfo} />}
         </div>
 
-        <Tags type='card' peopleMinMax={peopleMinMax} level={level} />
+        <Tags type='card' peopleMinMax={peopleMinMax} peopleCount={bookingPeopleCount} level={level} />
+        {reservation && <ButtonAccent buttonType='MyQuests' reservationId={bookingId} />}
       </div>
     </div>
   );
