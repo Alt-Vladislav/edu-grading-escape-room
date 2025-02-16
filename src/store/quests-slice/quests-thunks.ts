@@ -5,7 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
 export const fetchQuests = createAsyncThunk<Quest[], undefined, ThunkApiConfig>(
-  `${SliceName.Quest}/fetch`,
+  `${SliceName.Quests}/fetch`,
   async (_arg, { extra: api }) => {
     const response = await api.get<Quest[]>(APIRoute.Quest);
 

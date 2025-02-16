@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosError} from 'axios';
+import axios, { AxiosInstance, AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token';
@@ -30,7 +30,7 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.response.use(
     (response) => response,
-    (error: AxiosError<{status: number; message: string}>) => {
+    (error: AxiosError<{ status: number; message: string }>) => {
       if (error.status && EnabledStatusCode[error.status]) {
         toast.warn(error.message);
         throw error;

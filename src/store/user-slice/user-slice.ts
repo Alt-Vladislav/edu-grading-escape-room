@@ -5,7 +5,7 @@ import { checkAuthorization, login, logout } from './user-thunks';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialSLiceState: Pick<AppState, 'authorizationStatus' | 'user'> = {
-  user: {data: undefined, status: LoadingStatus.Unknown},
+  user: { data: null, status: LoadingStatus.Unknown },
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 
@@ -22,9 +22,13 @@ export const userSlice = createSlice({
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(checkAuthorization.rejected, (state) => {
-        state.user.data = undefined;
+        state.user.data = initialSLiceState.user.data;
         state.user.status = LoadingStatus.Error;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(login.pending, (state) => {
+        state.user.status = LoadingStatus.Loading;
+        state.authorizationStatus = AuthorizationStatus.Unknown;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user.data = action.payload;
@@ -32,12 +36,12 @@ export const userSlice = createSlice({
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(login.rejected, (state) => {
-        state.user.data = undefined;
+        state.user.data = initialSLiceState.user.data;
         state.user.status = LoadingStatus.Error;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.user.data = undefined;
+        state.user.data = initialSLiceState.user.data;
         state.user.status = LoadingStatus.Unknown;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       });

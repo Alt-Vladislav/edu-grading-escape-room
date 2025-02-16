@@ -4,8 +4,8 @@ import { fetchFullQuest, fetchQuestBooking, postQuestBooking } from './quest-thu
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialSLiceState: Pick<AppState, 'quest' | 'bookingOptions' | 'isBooking'> = {
-  quest: {data: undefined, status: LoadingStatus.Unknown},
-  bookingOptions: {data: [], status: LoadingStatus.Unknown},
+  quest: { data: null, status: LoadingStatus.Unknown },
+  bookingOptions: { data: [], status: LoadingStatus.Unknown },
   isBooking: false
 };
 
@@ -17,7 +17,6 @@ export const questSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchFullQuest.pending, (state) => {
-        state.quest.data = undefined;
         state.quest.status = LoadingStatus.Loading;
       })
       .addCase(fetchFullQuest.fulfilled, (state, action) => {
@@ -25,7 +24,7 @@ export const questSlice = createSlice({
         state.quest.status = LoadingStatus.Loaded;
       })
       .addCase(fetchFullQuest.rejected, (state) => {
-        state.quest.data = undefined;
+        state.quest.data = initialSLiceState.quest.data;
         state.quest.status = LoadingStatus.Error;
       })
       .addCase(fetchQuestBooking.pending, (state) => {

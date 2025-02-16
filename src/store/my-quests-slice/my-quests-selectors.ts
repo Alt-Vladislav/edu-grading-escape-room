@@ -4,9 +4,9 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getMyQuestsState = (state: State) => state[SliceName.MyQuests];
 
-const selectFavorites = createSelector(
+const selectMyQuests = createSelector(
   getMyQuestsState,
   (myQuests) => myQuests.myQuests
 );
 
-export { selectFavorites };
+export { selectMyQuests };

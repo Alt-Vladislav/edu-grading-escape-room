@@ -1,53 +1,54 @@
+import { useRef } from 'react';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { selectUserLoadingStatus } from '../../store/user-slice/user-selectors';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { login } from '../../store/user-slice/user-thunks';
+import LoginInput from '../../components/login-input/login-input';
+import ButtonAccent from '../../components/button-accent/button-accent';
+
+
 export default function LoginPage(): JSX.Element {
+  const isLoading = useAppSelector(selectUserLoadingStatus) === 'Loading';
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const checkboxRef = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+
+  const handleFormSubmit = (evt: React.FormEvent) => {
+    evt.preventDefault();
+
+    if (emailRef.current !== null && passwordRef.current !== null && checkboxRef.current !== null) {
+      if (checkboxRef.current.checked) {
+        dispatch(login({
+          email: emailRef.current.value,
+          password: passwordRef.current.value
+        }));
+      }
+    }
+  };
+
   return (
     <div className="container container--size-l">
       <div className="login__form">
-        <form
-          className="login-form"
-          action="https://echo.htmlacademy.ru/"
-          method="post"
-        >
+        <form className="login-form" action="#" method="post" onSubmit={handleFormSubmit}>
+
           <div className="login-form__inner-wrapper">
             <h1 className="title title--size-s login-form__title">Вход</h1>
             <div className="login-form__inputs">
-              <div className="custom-input login-form__input">
-                <label className="custom-input__label" htmlFor="email">
-                  E&nbsp;–&nbsp;mail
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Адрес электронной почты"
-                  required
-                />
-              </div>
-              <div className="custom-input login-form__input">
-                <label className="custom-input__label" htmlFor="password">
-                  Пароль
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Пароль"
-                  required
-                />
-              </div>
+              <LoginInput type='Email' reference={emailRef} isDisabled={isLoading} />
+              <LoginInput type='Password' reference={passwordRef} isDisabled={isLoading} />
             </div>
-            <button
-              className="btn btn--accent btn--general login-form__submit"
-              type="submit"
-            >
-              Войти
-            </button>
+            <ButtonAccent buttonType='Login' isDisabled={isLoading} />
           </div>
+
           <label className="custom-checkbox login-form__checkbox">
             <input
               type="checkbox"
               id="id-order-agreement"
               name="user-agreement"
               required
+              ref={checkboxRef}
+              disabled={isLoading}
             />
             <span className="custom-checkbox__icon">
               <svg width={20} height={17} aria-hidden="true">
@@ -55,11 +56,7 @@ export default function LoginPage(): JSX.Element {
               </svg>
             </span>
             <span className="custom-checkbox__label">
-              Я&nbsp;согласен с
-              <a className="link link--active-silver link--underlined" href="#">
-                правилами обработки персональных данных
-              </a>
-              &nbsp;и пользовательским соглашением
+              Я&nbsp;согласен с <span className="link link--active-silver link--underlined">правилами обработки персональных данных</span>&nbsp;и пользовательским соглашением
             </span>
           </label>
         </form>

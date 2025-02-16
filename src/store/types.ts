@@ -1,4 +1,4 @@
-import { Genre, DifficultyLevel, Quest, FullQuest, BookingOption, Reservation, User, Authorization } from '../types';
+import { Genre, Difficulty, Quest, FullQuest, BookingOption, Reservation, User, Authorization } from '../types';
 import { LoadingStatus } from './consts';
 import { AxiosInstance } from 'axios';
 import { AppDispatch } from '../hooks/use-app-dispatch';
@@ -11,18 +11,20 @@ type ThunkApiConfig = {
   extra: AxiosInstance;
 };
 
+type LoadingStatus = typeof LoadingStatus[keyof typeof LoadingStatus];
+
 type LoadedData<T> = {
   data: T;
-  status: typeof LoadingStatus[keyof typeof LoadingStatus];
+  status: LoadingStatus;
 }
 
 type AppState = {
   genreFilter: Genre;
-  difficultyFilter: DifficultyLevel;
+  difficultyFilter: Difficulty;
   authorizationStatus: Authorization;
-  user: LoadedData<User | undefined>;
+  user: LoadedData<User | null>;
   quests: LoadedData<Quest[]>;
-  quest: LoadedData<FullQuest | undefined>;
+  quest: LoadedData<FullQuest | null>;
   bookingOptions: LoadedData<BookingOption[]>;
   myQuests: LoadedData<Reservation[]>;
   isBooking: boolean;
@@ -37,4 +39,4 @@ type LoginData = {
   password: string;
 };
 
-export type { ThunkApiConfig, LoadedData, AppState, BookingData, LoginData };
+export type { ThunkApiConfig, LoadingStatus, LoadedData, AppState, BookingData, LoginData };

@@ -1,5 +1,7 @@
-import { AppRoute } from './consts';
-import { Page } from './types';
+import { AppRoute, QuestGenre, DifficultyLevel } from './consts';
+import { Quest, Page } from './types';
+
+const capitalizeFirstLetter = (inputWord: string): string => inputWord[0].toUpperCase() + inputWord.slice(1);
 
 const getPageName = (path: string): Page => {
   const processedPath = path.replace(/\/quest\/[^/]+/, '/quest/:id');
@@ -12,4 +14,18 @@ const getPageName = (path: string): Page => {
   return 'Main';
 };
 
-export { getPageName };
+
+const findDifficultyTitle = (level: Quest['level']) => {
+  const difficultyLevel = Object.entries(DifficultyLevel).find((item) => item[0].toLowerCase() === level);
+
+  return difficultyLevel ? difficultyLevel[1].Title : '';
+};
+
+const findGenreTitle = (genre: Quest['type']) => {
+  const questGenre = Object.entries(QuestGenre).find((item) => item[0].toLowerCase() === genre);
+
+  return questGenre ? questGenre[1].Title : '';
+};
+
+
+export { capitalizeFirstLetter, getPageName, findDifficultyTitle, findGenreTitle };
