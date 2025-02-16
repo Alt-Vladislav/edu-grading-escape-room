@@ -35,10 +35,10 @@ export default function LoginPage(): JSX.Element {
           <div className="login-form__inner-wrapper">
             <h1 className="title title--size-s login-form__title">Вход</h1>
             <div className="login-form__inputs">
-              <LoginInput type='Email' reference={emailRef} isDisabled={ isLoading } />
-              <LoginInput type='Password' reference={passwordRef} isDisabled={ isLoading } />
+              <LoginInput type='Email' reference={emailRef} isDisabled={isLoading} />
+              <LoginInput type='Password' reference={passwordRef} isDisabled={isLoading} />
             </div>
-            <ButtonAccent buttonType='Login' isDisabled={ isLoading } />
+            <ButtonAccent buttonType='Login' isDisabled={isLoading} />
           </div>
 
           <label className="custom-checkbox login-form__checkbox">
@@ -48,7 +48,7 @@ export default function LoginPage(): JSX.Element {
               name="user-agreement"
               required
               ref={checkboxRef}
-              disabled={ isLoading }
+              disabled={isLoading}
             />
             <span className="custom-checkbox__icon">
               <svg width={20} height={17} aria-hidden="true">

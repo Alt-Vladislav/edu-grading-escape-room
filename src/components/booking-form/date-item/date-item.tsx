@@ -18,10 +18,12 @@ export default function DateItem({ type, slot, selectedDate, onChange }: DateIte
         id={value}
         name="date"
         required
-        checked={ value === selectedDate }
+        checked={value === selectedDate}
         defaultValue={value}
         disabled={!slot.isAvailable}
         onChange={onChange}
+        data-day={type}
+        data-time={slot.time}
       />
       <span className="custom-radio__label">{slot.time}</span>
     </label>

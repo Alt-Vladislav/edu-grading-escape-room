@@ -45,14 +45,16 @@ export default function BookingPage(): JSX.Element {
     <div className="container container--size-s">
       <div className="page-content__title-wrapper">
         <h1 className="subtitle subtitle--size-l page-content__subtitle">Бронирование квеста</h1>
-        <p className="title title--size-m title--uppercase page-content__title">{quest?.title}</p>
+        <p className="title title--size-m title--uppercase page-content__title">{quest.title}</p>
       </div>
 
       <div className="page-content__item">
         <Map selectedBookingOption={selectedBookingOption} bookingOptions={bookingOptions} onCLick={setSelectedBookingId} />
       </div>
 
-      {selectedBookingOption && <BookingForm bookingOption={selectedBookingOption} isBookingLoading={isBookingLoadingStatus} />}
+      {selectedBookingOption && (
+        <BookingForm questId={questId} bookingOption={selectedBookingOption} peopleMinMax={quest.peopleMinMax} isBookingLoading={isBookingLoadingStatus} />
+      )}
     </div>
   );
 }

@@ -23,7 +23,7 @@ export const fetchQuestBooking = createAsyncThunk<BookingOption[], { id: string 
 export const postQuestBooking = createAsyncThunk<Reservation, { id: string; data: BookingData }, ThunkApiConfig>(
   `${SliceName.Quest}/booking/post`,
   async ({ id, data }, { extra: api }) => {
-    const response = await api.post<Reservation>(`${APIRoute.Quest}/${id}/${APIRoute.Booking}`, data);
+    const response = await api.post<Reservation>(`${APIRoute.Quest}/${id}${APIRoute.Booking}`, data);
     return response.data;
   }
 );
