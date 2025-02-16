@@ -1,7 +1,7 @@
 import { NavigationSetting } from '../../../consts';
 import { Page, Navigation } from '../../../types';
 import NavigationItem from '../navigation-item/navigation-item';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
 type NavigationProps = {
   isAuthorized: boolean;
@@ -9,7 +9,7 @@ type NavigationProps = {
 }
 
 
-export default function NavigationList({ isAuthorized, currentPage }: NavigationProps): JSX.Element {
+function BaseNavigationList({ isAuthorized, currentPage }: NavigationProps): JSX.Element {
   const [activeNavigation, setActiveNavigation] = useState<Navigation>('Main');
 
   return (
@@ -31,3 +31,5 @@ export default function NavigationList({ isAuthorized, currentPage }: Navigation
     </nav>
   );
 }
+
+export const NavigationList = memo(BaseNavigationList);

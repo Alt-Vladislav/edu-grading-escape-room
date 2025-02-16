@@ -5,8 +5,8 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { selectAuthorizationStatus } from '../../store/user-slice/user-selectors';
 import { logout } from '../../store/user-slice/user-thunks';
-import Logo from './logo/logo';
-import NavigationList from './navigation-list/navigation-list';
+import { Logo } from './logo/logo';
+import { NavigationList } from './navigation-list/navigation-list';
 
 type HeaderProps = {
   currentPage: Page;

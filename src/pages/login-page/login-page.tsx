@@ -1,18 +1,31 @@
-import { useRef } from 'react';
+import { AppRoute } from '../../consts';
+import { useRef, useEffect } from 'react';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { selectUserLoadingStatus } from '../../store/user-slice/user-selectors';
+import { selectAuthorizationStatus, selectUserLoadingStatus } from '../../store/user-slice/user-selectors';
+import { selectRedirectPath } from '../../store/app-slice/app-selectors';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { login } from '../../store/user-slice/user-thunks';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import LoginInput from '../../components/login-input/login-input';
 import ButtonAccent from '../../components/button-accent/button-accent';
 
 
 export default function LoginPage(): JSX.Element {
+  const isAuthorized = useAppSelector(selectAuthorizationStatus) === 'AUTH';
   const isLoading = useAppSelector(selectUserLoadingStatus) === 'Loading';
+  const redirectPath = useAppSelector(selectRedirectPath);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const checkboxRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthorized) {
+      navigate(AppRoute.Main.Path);
+    }
+  }, [isAuthorized, navigate]);
 
   const handleFormSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
@@ -22,7 +35,14 @@ export default function LoginPage(): JSX.Element {
         dispatch(login({
           email: emailRef.current.value,
           password: passwordRef.current.value
-        }));
+        }))
+          .then(({ meta }) => {
+            if (meta.requestStatus === 'rejected') {
+              toast.error('Ошибка авторизации. Попробуйте ещё раз');
+            } else {
+              navigate(redirectPath || AppRoute.Main.Path);
+            }
+          });
       }
     }
   };

@@ -3,7 +3,8 @@ import { Genre, Difficulty } from '../../types';
 import { SliceName } from '../consts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: Pick<AppState, 'genreFilter' | 'difficultyFilter'> = {
+const initialState: Pick<AppState, 'redirectPathAfterLogin' | 'genreFilter' | 'difficultyFilter'> = {
+  redirectPathAfterLogin: '',
   genreFilter: 'all',
   difficultyFilter: 'all',
 };
@@ -13,6 +14,12 @@ export const appSlice = createSlice({
   name: SliceName.App,
   initialState: initialState,
   reducers: {
+    setRedirectPath(state, action: PayloadAction<{ redirectPath: string }>) {
+      state.redirectPathAfterLogin = action.payload.redirectPath;
+    },
+    resetRedirectPath(state) {
+      state.redirectPathAfterLogin = '';
+    },
     changeGenreFilter(state, action: PayloadAction<{ filter: Genre }>) {
       state.genreFilter = action.payload.filter;
     },
@@ -22,4 +29,4 @@ export const appSlice = createSlice({
   }
 });
 
-export const { changeGenreFilter, changeDifficultyFilter } = appSlice.actions;
+export const { setRedirectPath, resetRedirectPath, changeGenreFilter, changeDifficultyFilter } = appSlice.actions;

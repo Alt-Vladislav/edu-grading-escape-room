@@ -4,6 +4,11 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getAppState = (state: State) => state[SliceName.App];
 
+const selectRedirectPath = createSelector(
+  getAppState,
+  (app) => app.redirectPathAfterLogin
+);
+
 const selectGenreFilter = createSelector(
   getAppState,
   (app) => app.genreFilter
@@ -14,4 +19,4 @@ const selectDifficultyFilter = createSelector(
   (app) => app.difficultyFilter
 );
 
-export { selectGenreFilter, selectDifficultyFilter };
+export { selectRedirectPath, selectGenreFilter, selectDifficultyFilter };
