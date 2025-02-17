@@ -27,5 +27,5 @@ export default function PrivateRoute({ children }: PrivateRouteProps) {
     return null;
   }
 
-  return children;
+  return children as JSX.Element;
 }
