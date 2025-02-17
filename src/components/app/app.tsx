@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { checkAuthorization } from '../../store/user-slice/user-thunks';
 import { fetchQuests } from '../../store/quests-slice/quests-thunks';
 import { useEffect } from 'react';
+import PrivateRoute from '../private-route/private-route';
 import Layout from '../../pages/layout/layout';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -31,8 +32,8 @@ export default function App() {
             <Route path={AppRoute.Contacts.Path} element={<ContactsPage />} />
             <Route path={AppRoute.Quest.Path} element={<QuestPage />} />
             <Route path={AppRoute.Login.Path} element={<LoginPage />} />
-            <Route path={AppRoute.MyQuests.Path} element={<MyQuestsPage />} />
-            <Route path={AppRoute.Booking.Path} element={<BookingPage />} />
+            <Route path={AppRoute.MyQuests.Path} element={<PrivateRoute><MyQuestsPage /></PrivateRoute>} />
+            <Route path={AppRoute.Booking.Path} element={<PrivateRoute><BookingPage /></PrivateRoute>} />
           </Route>
           <Route path='*' element={<ErrorPage />} />
         </Routes>

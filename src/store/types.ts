@@ -19,6 +19,7 @@ type LoadedData<T> = {
 }
 
 type AppState = {
+  redirectPathAfterLogin: string;
   genreFilter: Genre;
   difficultyFilter: Difficulty;
   authorizationStatus: Authorization;

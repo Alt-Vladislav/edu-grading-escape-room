@@ -47,25 +47,29 @@ export default function BookingForm({ questId, bookingOption, peopleMinMax, isBo
 
     if (selectedDate.day && personRef.current !== null && phoneRef.current !== null && peopleCountRef.current !== null && withChildrenRef.current !== null && agreementRef.current !== null) {
       if (agreementRef.current.checked) {
-        dispatch(postQuestBooking({
-          id: questId,
-          data: {
-            date: selectedDate.day as 'today' | 'tomorrow',
-            time: selectedDate.time,
-            contactPerson: personRef.current.value,
-            phone: phoneRef.current.value,
-            withChildren: withChildrenRef.current.checked,
-            peopleCount: Number(peopleCountRef.current.value),
-            placeId: bookingOption.id
-          }
-        }))
-          .then(({ meta }) => {
-            if (meta.requestStatus === 'rejected') {
-              toast.error('Ошибка бронирования, попробуйте позже');
-            } else {
-              navigate(AppRoute.MyQuests.Path);
+        if ((Number(peopleCountRef.current.value) < peopleMinMax[0]) || (Number(peopleCountRef.current.value) > peopleMinMax[1])) {
+          toast.error('Укажите подходящее количество участников');
+        } else {
+          dispatch(postQuestBooking({
+            id: questId,
+            data: {
+              date: selectedDate.day as 'today' | 'tomorrow',
+              time: selectedDate.time,
+              contactPerson: personRef.current.value,
+              phone: phoneRef.current.value,
+              withChildren: withChildrenRef.current.checked,
+              peopleCount: Number(peopleCountRef.current.value),
+              placeId: bookingOption.id
             }
-          });
+          }))
+            .then(({ meta }) => {
+              if (meta.requestStatus === 'rejected') {
+                toast.error('Ошибка бронирования, попробуйте позже');
+              } else {
+                navigate(AppRoute.MyQuests.Path);
+              }
+            });
+        }
       }
     }
   };

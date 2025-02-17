@@ -1,12 +1,13 @@
 import { AppRoute } from '../../../consts';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
 type LogoProps = {
   isInactiveLink: boolean;
 }
 
 
-export default function Logo({ isInactiveLink }: LogoProps): JSX.Element {
+function BaseLogo({ isInactiveLink }: LogoProps): JSX.Element {
   return (
     isInactiveLink
       ? (
@@ -25,3 +26,5 @@ export default function Logo({ isInactiveLink }: LogoProps): JSX.Element {
       )
   );
 }
+
+export const Logo = memo(BaseLogo);

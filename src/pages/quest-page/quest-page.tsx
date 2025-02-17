@@ -2,6 +2,7 @@ import { AppRoute } from '../../consts';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { selectQuest } from '../../store/quest-slice/quest-selectors';
+import { setRedirectPath } from '../../store/app-slice/app-slice';
 import { fetchFullQuest, fetchQuestBooking } from '../../store/quest-slice/quest-thunks';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -15,6 +16,12 @@ export default function QuestPage(): JSX.Element {
   const { data: quest, status: loadingStatus } = useAppSelector(selectQuest);
   const questId = useParams().id;
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (questId) {
+      dispatch(setRedirectPath({ redirectPath: AppRoute.Quest.Path.replace(':id', questId) }));
+    }
+  }, [dispatch, questId]);
 
   useEffect(() => {
     if (questId && (quest === null || questId !== quest.id)) {
