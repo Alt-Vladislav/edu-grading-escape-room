@@ -1,7 +1,7 @@
 import { NavigationSetting } from '../../../consts';
 import { Page, Navigation } from '../../../types';
 import NavigationItem from '../navigation-item/navigation-item';
-import { useState, memo } from 'react';
+import { useState, memo, useEffect } from 'react';
 
 type NavigationProps = {
   isAuthorized: boolean;
@@ -11,6 +11,12 @@ type NavigationProps = {
 
 function BaseNavigationList({ isAuthorized, currentPage }: NavigationProps): JSX.Element {
   const [activeNavigation, setActiveNavigation] = useState<Navigation>('Main');
+
+  useEffect(() => {
+    if (Object.keys(NavigationSetting).includes(currentPage) && (activeNavigation !== currentPage)) {
+      setActiveNavigation(currentPage as Navigation);
+    }
+  }, [currentPage, activeNavigation]);
 
   return (
     <nav className="main-nav header__main-nav">

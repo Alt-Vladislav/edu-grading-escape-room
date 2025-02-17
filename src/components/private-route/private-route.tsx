@@ -10,20 +10,20 @@ type PrivateRouteProps = PropsWithChildren;
 
 
 export default function PrivateRoute({ children }: PrivateRouteProps) {
-  const isNotAuthorized = useAppSelector(selectAuthorizationStatus) !== 'AUTH';
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const currentPagePath = useLocation().pathname;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
 
   useEffect(() => {
-    if (isNotAuthorized) {
+    if (authorizationStatus === 'NO_AUTH') {
       dispatch(setRedirectPath({ redirectPath: currentPagePath }));
       navigate(AppRoute.Login.Path);
     }
-  }, [isNotAuthorized, currentPagePath, dispatch, navigate]);
+  }, [authorizationStatus, currentPagePath, dispatch, navigate]);
 
-  if (isNotAuthorized) {
+  if (authorizationStatus === 'NO_AUTH' || authorizationStatus === 'UNKNOWN') {
     return null;
   }
 
